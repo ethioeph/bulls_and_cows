@@ -1,9 +1,5 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-  var wordCount = 10;
-  var guessCount = 4;
-  var password = '';
-
   //toggles to the game-screen when the 'start' button is pressed
   d3.select("#start")
     .on("click", function() {
