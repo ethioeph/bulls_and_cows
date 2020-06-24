@@ -73,21 +73,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let bullCount = 0, cowCount = 0;
     if(guess.length == 4 && num != NaN){
-      //calculating the number of bulls and cows.
+      //calculating the number of bulls
+      for(let i = 0; i < 4; i++){    
+        if(numArray[i] === passwordArray[i]){
+          bullCount++;
+          passwordArray[i] = '#';//replacing existing number with unique key to prevent overcounting
+        }
+      }
+
+      //calculating the number of cows
       for(let i = 0; i < 4; i++){    
         for(let j = 0; j < 4; j++){
           if(numArray[i] === passwordArray[j]){
-            if(i==j){
-              //found bull
-              bullCount++;
-              break;
-            }
-            else{
               //found cow
-              passwordArray[j] = '#';//replacing existing number with unique key to prevent overcounting
+              passwordArray[j] = '#';
               cowCount++;
               break;
-            }
           }
         }
       }

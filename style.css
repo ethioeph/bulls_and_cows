@@ -52,21 +52,3 @@ body {
   outline: none;
 }
 
-#word-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-#word-list > li {
-  padding: 5px;
-}
-
-#word-list > li.disabled {
-  color: #ccc;
-}
-
-#word-list > li:not(.disabled):hover {
-  color: yellow;
-  font-size: 1.5em;
-  cursor: pointer;
-}
