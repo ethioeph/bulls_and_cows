@@ -23,10 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   var password;
+  var currentAttempt;
 
   function startGame() {
     //obtain a random 4 digit password
     password = getRandomFourDigitValue();
+    currentAttempt = 0;
 
     //updates the state whenever the 'try' button is clicked.
     var tryButton = d3.select("#try");
@@ -40,11 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
     d3.event.preventDefault();
     d3.selectAll(".bull-cow").remove();
     d3.selectAll(".warning-message").remove();
+    d3.selectAll(".attempt-message").remove()
 
     //checking the guess is valid and updating the DOM with appropriate # of bulls and cows 
     checkGuessDigits(numberGuess.property("value"));
     updateBullsAndCows(numberGuess.property("value"));
-        
+    updateNumberOfAttempts();
     //empty the search field after a guess
     numberGuess.property("value","");
   }
@@ -99,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
       d3.select("#guess-result")                        
       .append('p')
         .classed('bull-cow',true)
-        .text(bullCount + " bulls & " + cowCount + " cows");
+        .text(bullCount + " bulls & " + cowCount + " cows"); 
     }
     else { 
       //by default, show 0 bulls and 0 cows for incorrectly formatted input.
@@ -110,4 +113,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
   }
+
+    //updates the current number of attempts
+    function updateNumberOfAttempts(){
+      currentAttempt++;
+      d3.select("#attempts-so-far")                        
+      .append('p')
+        .classed('attempt-message',true)
+        .text("Attempt so far: " + currentAttempt); 
+    }
+  
 });
